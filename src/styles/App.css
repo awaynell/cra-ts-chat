@@ -1,4 +1,41 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla&family=Montserrat:wght@400;600;700&display=swap");
+.light {
+  --header-bg: #e9967a;
+  --accent-color-hover: #fa335b;
+  --accent-color: #e41841;
+  --font-color: rgb(0, 0, 0);
+  --layout-chat-bg: #ffded3;
+  --chat-bg: #ffd4c5;
+}
+
+.dark {
+  --font-color: rgb(255, 255, 255);
+  --accent-color-hover: #fa335b;
+  --accent-color: #dc143c;
+  --header-bg: #000000;
+  --layout-chat-bg: #1b1b1b;
+  --chat-bg: #242323;
+}
+
+.login {
+  height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--layout-chat-bg);
+}
+.login .login-btn {
+  cursor: pointer;
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  color: var(--font-color);
+  padding: 10px;
+  font-size: 30px;
+}
+.login .login-btn:hover {
+  background-color: var(--accent-color-hover);
+}
+
 .header {
   font-family: "Montserrat", sans-serif;
   color: var(--font-color);
@@ -38,18 +75,42 @@
   background-color: var(--accent-color-hover);
 }
 
-.light {
-  --header-bg: #e9967a;
-  --accent-color-hover: #fa335b;
-  --accent-color: #e41841;
-  --font-color: rgb(0, 0, 0);
+.wrapper {
+  height: calc(100vh - 70px);
+  transition: 1s all;
+  background-color: var(--layout-chat-bg);
+  display: flex;
+  justify-content: center;
 }
-
-.dark {
-  --font-color: rgb(255, 255, 255);
-  --accent-color-hover: #fa335b;
-  --accent-color: #dc143c;
-  --header-bg: #000000;
+.wrapper .chat {
+  height: calc(100vh - 90px);
+  margin-top: 10px;
+  width: 80%;
+  background-color: var(--chat-bg);
+}
+.wrapper .chat .chat-messages {
+  height: 85%;
+  overflow: auto;
+}
+.wrapper .chat .chat-input {
+  display: flex;
+  align-items: center;
+  margin-top: calc(10% - 60px);
+}
+.wrapper .chat .chat-input input {
+  margin-left: 10px;
+  padding: 12px;
+  width: 85%;
+  border: none;
+  border-radius: 10px;
+}
+.wrapper .chat .chat-input button {
+  background-color: var(--accent-color);
+  border: none;
+  width: 10%;
+  margin-left: 20px;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 /*# sourceMappingURL=App.css.map */

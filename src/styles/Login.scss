@@ -1,0 +1,18 @@
+.login {
+  height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--layout-chat-bg);
+  .login-btn {
+    cursor: pointer;
+    background-color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    color: var(--font-color);
+    padding: 10px;
+    font-size: 30px;
+    &:hover {
+      background-color: var(--accent-color-hover);
+    }
+  }
+}
