@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla&family=Montserrat:wght@400;600;700&display=swap");
+.header {
+  font-family: "Montserrat", sans-serif;
+  color: var(--font-color);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+  min-height: 50px;
+  background-color: var(--header-bg);
+  transition: 1s all;
+}
+.header .header-title {
+  font-weight: 600;
+  margin-left: 30px;
+}
+.header .header-controls {
+  display: flex;
+}
+.header .header-controls button {
+  transition: all 0.5s;
+  font-family: "Montserrat", sans-serif;
+  color: var(--font-color);
+  padding: 5px 15px;
+  margin-right: 20px;
+  border: none;
+  background-color: transparent;
+  font-size: 15px;
+  cursor: pointer;
+}
+.header .header-controls .header-login {
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+  color: var(--font-color);
+  border-radius: 4px;
+  background-color: var(--accent-color);
+}
+.header .header-controls .header-login:hover {
+  background-color: var(--accent-color-hover);
+}
+
+.light {
+  --header-bg: #e9967a;
+  --accent-color-hover: #fa335b;
+  --accent-color: #e41841;
+  --font-color: rgb(0, 0, 0);
+}
+
+.dark {
+  --font-color: rgb(255, 255, 255);
+  --accent-color-hover: #fa335b;
+  --accent-color: #dc143c;
+  --header-bg: #000000;
+}
+
+/*# sourceMappingURL=App.css.map */

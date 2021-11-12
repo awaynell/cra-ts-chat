@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./styles/App.css";
+import Header from "./components/Header";
+import Chat from "./components/Chat";
+import { changeTheme } from "./functions/changeTheme";
 
-function App() {
+const App = () => {
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    if (localStorage.getItem("theme") === "dark") {
+      changeTheme("dark", setTheme);
+    } else if (localStorage.getItem("theme") === "light") {
+      changeTheme("light", setTheme);
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Header title={"Simple chat"} login={false} theme={theme} setTheme={setTheme} />
+      <Chat />
     </div>
   );
-}
+};
 
 export default App;

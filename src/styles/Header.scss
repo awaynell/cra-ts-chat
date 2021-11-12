@@ -1,0 +1,38 @@
+.header {
+  font-family: "Montserrat", sans-serif;
+  color: var(--font-color);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+  min-height: 50px;
+  background-color: var(--header-bg);
+  transition: 1s all;
+  .header-title {
+    font-weight: 600;
+    margin-left: 30px;
+  }
+  .header-controls {
+    display: flex;
+    button {
+      transition: all 0.5s;
+      font-family: "Montserrat", sans-serif;
+      color: var(--font-color);
+      padding: 5px 15px;
+      margin-right: 20px;
+      border: none;
+      background-color: transparent;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .header-login {
+      box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+      color: var(--font-color);
+      border-radius: 4px;
+      background-color: var(--accent-color);
+      &:hover {
+        background-color: var(--accent-color-hover);
+      }
+    }
+  }
+}

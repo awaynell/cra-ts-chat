@@ -1,0 +1,12 @@
+.light {
+  --header-bg: #e9967a;
+  --accent-color-hover: #fa335b;
+  --accent-color: #e41841;
+  --font-color: rgb(0, 0, 0);
+}
+.dark {
+  --font-color: rgb(255, 255, 255);
+  --accent-color-hover: #fa335b;
+  --accent-color: #dc143c;
+  --header-bg: #000000;
+}
