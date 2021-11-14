@@ -1,19 +1,21 @@
+import firebase from "firebase";
 import React, { FC, useContext, useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router";
 import { changeTheme } from "../functions/changeTheme";
-import { privateRoutes, publicRoutes } from "../router";
 import Chat from "./Chat";
 import { Context } from "./context";
 import Header from "./Header";
+import Loader from "./Loader";
 import Login from "./Login";
 
 const AppRouter: FC = () => {
   const [textMessage, setTextMessage] = useState("");
   const [theme, setTheme] = useState("dark");
-  const { isAuth, setIsAuth } = useContext(Context);
+  const [loading, setLoading] = useState(false);
+  const { user, auth, isAuth, setIsAuth } = useContext(Context);
 
   useEffect(() => {
-    if (localStorage.getItem === null) {
+    if (localStorage.getItem("theme") === null) {
       changeTheme("dark", setTheme);
     }
     if (localStorage.getItem("theme") === "dark") {
@@ -22,6 +24,25 @@ const AppRouter: FC = () => {
       changeTheme("light", setTheme);
     }
   }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setIsAuth(true);
+        console.log(user);
+        setLoading(false);
+        console.log(loading);
+      } else {
+        setLoading(false);
+        setIsAuth(false);
+      }
+    });
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>

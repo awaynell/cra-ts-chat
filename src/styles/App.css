@@ -22,6 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 1s all;
   background-color: var(--layout-chat-bg);
 }
 .login .login-btn {
@@ -45,7 +46,7 @@
   align-items: center;
   min-height: 50px;
   background-color: var(--header-bg);
-  transition: 1s all;
+  transition: 0.5s background;
 }
 .header .header-title {
   font-weight: 600;
@@ -111,6 +112,13 @@
   margin-left: 20px;
   padding: 20px;
   border-radius: 10px;
+}
+
+.preload * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
 }
 
 /*# sourceMappingURL=App.css.map */

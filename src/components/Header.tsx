@@ -1,5 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { changeTheme } from "../functions/changeTheme";
+import { signOut } from "../functions/signOut";
+import { Context } from "./context";
 import { Moon, Sun } from "./svg";
 
 interface HeaderProps {
@@ -9,7 +11,10 @@ interface HeaderProps {
   setTheme: any;
 }
 const Header: FC<HeaderProps> = ({ title, login, theme, setTheme }) => {
+  const { isAuth, setIsAuth } = useContext(Context);
+
   const setThemeOnClick = (theme: string, setTheme: any) => {
+    document.body.classList.remove("preload");
     switch (theme) {
       case "light":
         changeTheme("dark", setTheme);
@@ -32,7 +37,11 @@ const Header: FC<HeaderProps> = ({ title, login, theme, setTheme }) => {
             <Sun />
           </button>
         )}
-        {login ? <button className='header-login'>Выйти</button> : <button className='header-login'>Войти</button>}
+        {login ? (
+          <button className='header-login' onClick={() => signOut(setIsAuth)}>
+            Выйти
+          </button>
+        ) : null}
       </div>
     </div>
   );

@@ -8,4 +8,5 @@ interface AppContextInterface {
   firestore: any;
   isAuth: boolean;
   setIsAuth: any;
+  user?: any;
 }

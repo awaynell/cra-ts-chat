@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 1s all;
   background-color: var(--layout-chat-bg);
   .login-btn {
     cursor: pointer;

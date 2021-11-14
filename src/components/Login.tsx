@@ -1,20 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "./context/index";
 import firebase from "firebase";
 import "firebase/firestore";
 
 const Login = () => {
-  const { auth } = useContext(Context);
+  const { auth, isAuth, setIsAuth } = useContext(Context);
 
-  const login = async () => {
+  const signIn = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     const { user } = await auth.signInWithPopup(provider);
-    console.log({ user });
+    localStorage.setItem("user", JSON.stringify(user));
+    console.log(isAuth);
+    setIsAuth(true);
   };
 
   return (
     <div className='login'>
-      <button className='login-btn' onClick={login}>
+      <button className='login-btn' onClick={signIn}>
         Войти
       </button>
     </div>

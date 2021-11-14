@@ -3,3 +3,11 @@
 @import "./Login.scss";
 @import "./Header.scss";
 @import "./Chat.scss";
+@import "./Loader.scss";
+
+.preload * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+}
