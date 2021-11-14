@@ -12,7 +12,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Loader from "./components/Loader";
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(true);
 
   let config = {
     apiKey: "AIzaSyDUcRzJlYK9rQ9vXL_WwnmSLGeQ0McyERw",
@@ -46,6 +46,4 @@ const App = () => {
 export default App;
 
 // TODO
-// разобраться с роутами
 // настроить работу с базой данных
-// добавить выход из аккаунта

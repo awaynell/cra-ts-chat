@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 import { changeTheme } from "../functions/changeTheme";
-import { signOut } from "../functions/signOut";
+import { signOut } from "../functions/login";
 import { Context } from "./context";
 import { Moon, Sun } from "./svg";
 

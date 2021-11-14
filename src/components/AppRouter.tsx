@@ -1,5 +1,6 @@
 import firebase from "firebase";
 import React, { FC, useContext, useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Redirect, Route, Switch } from "react-router";
 import { changeTheme } from "../functions/changeTheme";
 import Chat from "./Chat";
@@ -11,8 +12,9 @@ import Login from "./Login";
 const AppRouter: FC = () => {
   const [textMessage, setTextMessage] = useState("");
   const [theme, setTheme] = useState("dark");
-  const [loading, setLoading] = useState(false);
-  const { user, auth, isAuth, setIsAuth } = useContext(Context);
+  const [load, setLoading] = useState(false);
+  const [user, setUser] = useState({});
+  const { auth, isAuth, setIsAuth } = useContext(Context);
 
   useEffect(() => {
     if (localStorage.getItem("theme") === null) {
@@ -30,9 +32,8 @@ const AppRouter: FC = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setIsAuth(true);
-        console.log(user);
+        setUser(user);
         setLoading(false);
-        console.log(loading);
       } else {
         setLoading(false);
         setIsAuth(false);
@@ -40,7 +41,9 @@ const AppRouter: FC = () => {
     });
   }, []);
 
-  if (loading) {
+  console.log(user);
+
+  if (load) {
     return (
       <>
         <Header title='Simple chat' login={isAuth} theme={theme} setTheme={setTheme} />
