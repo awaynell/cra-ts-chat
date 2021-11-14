@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { Context } from "..";
+import { Context } from "./context/index";
 import firebase from "firebase";
-const { GoogleAuthProvider, getAuth, signInWithPopup } = require("firebase/firestore");
+import "firebase/firestore";
 
 const Login = () => {
   const { auth } = useContext(Context);
