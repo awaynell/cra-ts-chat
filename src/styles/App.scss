@@ -4,6 +4,9 @@
 @import "./Header.scss";
 @import "./Chat.scss";
 @import "./Loader.scss";
+body {
+  background-color: var(--layout-chat-bg);
+}
 
 .preload * {
   -webkit-transition: none !important;

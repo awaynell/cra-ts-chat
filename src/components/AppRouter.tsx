@@ -41,7 +41,12 @@ const AppRouter: FC = () => {
   }, []);
 
   if (loading) {
-    return <Loader />;
+    return (
+      <>
+        <Header title='Simple chat' login={isAuth} theme={theme} setTheme={setTheme} />
+        <Loader />
+      </>
+    );
   }
 
   return (

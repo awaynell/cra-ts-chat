@@ -9,6 +9,7 @@ import { Context } from "./components/context/index";
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./components/AppRouter";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Loader from "./components/Loader";
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(false);
