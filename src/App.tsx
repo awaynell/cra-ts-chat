@@ -13,6 +13,10 @@ import Loader from "./components/Loader";
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(true);
+  const [messages, setMessages] = useState([] as any);
+  const [load, setLoading] = useState(false);
+  const [theme, setTheme] = useState("dark");
+  const [user, setUser] = useState();
 
   let config = {
     apiKey: "AIzaSyDUcRzJlYK9rQ9vXL_WwnmSLGeQ0McyERw",
@@ -32,8 +36,60 @@ const App = () => {
   const auth = firebase.auth();
   const firestore = firebase.firestore();
 
+  const fetchMessages = async () => {
+    setLoading(true);
+    const response = firestore
+      .collection("messages")
+      .orderBy("createdAt")
+      .onSnapshot((data: any) => {
+        const tempDoc = [] as any;
+        data.forEach((doc: any) => {
+          tempDoc.push({ ...doc.data() });
+          console.log("tempDoc: ", tempDoc);
+        });
+        setMessages([...tempDoc]);
+        console.log(messages);
+      });
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("theme") === null) {
+      changeTheme("dark", setTheme);
+    }
+    if (localStorage.getItem("theme") === "dark") {
+      changeTheme("dark", setTheme);
+    } else if (localStorage.getItem("theme") === "light") {
+      changeTheme("light", setTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    firebase.auth().onAuthStateChanged((user: any) => {
+      if (user) {
+        setUser(user);
+        setIsAuth(true);
+        setLoading(false);
+      } else {
+        setLoading(false);
+        setIsAuth(false);
+      }
+    });
+    fetchMessages();
+  }, []);
+
+  if (load) {
+    return (
+      <>
+        <Header title='Simple chat' login={isAuth} theme={theme} setTheme={setTheme} />
+        <Loader />
+      </>
+    );
+  }
+
   return (
-    <Context.Provider value={{ firebase, auth, firestore, isAuth, setIsAuth }}>
+    <Context.Provider value={{ firebase, auth, firestore, isAuth, setIsAuth, messages, theme, setTheme, user, load }}>
       <BrowserRouter>
         <div className='App'>
           <AppRouter />
@@ -46,4 +102,8 @@ const App = () => {
 export default App;
 
 // TODO
-// настроить работу с базой данных
+// отцентровать сообщение
+// подчистить код
+// убрать ненужное
+// застилизовать scroll
+// поработать со стилями

@@ -8,5 +8,9 @@ interface AppContextInterface {
   firestore: any;
   isAuth: boolean;
   setIsAuth: any;
-  user?: any;
+  user: any;
+  messages: any;
+  theme: string;
+  setTheme: any;
+  load: boolean;
 }
