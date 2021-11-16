@@ -10,7 +10,7 @@ const ChatMessages = () => {
         return (
           <div
             className='message'
-            key={message.createdAt}
+            key={message.id}
             style={{
               marginLeft: message.uid === user.uid ? "auto" : "",
               backgroundColor: message.uid === user.uid ? "var(--accent-color-hover)" : "var(--accent-color)",

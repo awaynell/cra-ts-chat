@@ -17,6 +17,12 @@ const Chat: FC<ChatProps> = ({ textMessage, setTextMessage, user }) => {
   let inputEl: any = useRef();
   let endOfMessages: any = useRef();
 
+  const doSomething = (e: any) => {
+    if (e.key === "Enter") {
+      sendMessages();
+    }
+  };
+
   const sendMessages = () => {
     if (textMessage.length === 0) return;
     firestore.collection("messages").add({
@@ -44,14 +50,8 @@ const Chat: FC<ChatProps> = ({ textMessage, setTextMessage, user }) => {
         </div>
       </div>
       <div className='chat-input'>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <input ref={inputEl} type='text' className='chat-text' onChange={(e) => setTextMessage(e.target.value)} />
-          <button type='submit' className='chat-send' onClick={sendMessages}></button>
-        </form>
+        <input ref={inputEl} type='text' className='chat-text' onChange={(e) => setTextMessage(e.target.value)} onKeyDown={(e) => doSomething(e)} />
+        <button className='chat-send' onClick={sendMessages}></button>
       </div>
     </div>
   );

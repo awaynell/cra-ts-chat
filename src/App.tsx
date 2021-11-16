@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import "./styles/App.css";
+import "./styles/App.scss";
 import Header from "./components/Header";
 import Chat from "./components/Chat";
 import { changeTheme } from "./functions/changeTheme";
@@ -44,7 +44,7 @@ const App = () => {
       .onSnapshot((data: any) => {
         const tempDoc = [] as any;
         data.forEach((doc: any) => {
-          tempDoc.push({ ...doc.data() });
+          tempDoc.push({ id: doc.id, ...doc.data() });
         });
         setMessages([...tempDoc].reverse());
         setLoading(false);
@@ -74,7 +74,6 @@ const App = () => {
         setLoading(false);
       }
     });
-    console.log("useEffect end work");
     console.log(load);
   }, []);
 
@@ -106,3 +105,4 @@ export default App;
 // подчистить код
 // убрать ненужное
 // поработать со стилями
+// баг при нажатии ентер закрывается клавиатура с мобильного телефона
