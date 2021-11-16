@@ -14,11 +14,13 @@
   }
   .header-controls {
     display: flex;
-    button {
+    align-items: center;
+    margin-right: 30px;
+    .theme {
       transition: all 0.5s;
-      font-family: "Montserrat", sans-serif;
       color: var(--font-color);
-      padding: 5px 15px;
+      padding: 10px 15px 5px 15px;
+      outline: none;
       margin-right: 20px;
       border: none;
       background-color: transparent;
@@ -27,6 +29,12 @@
     }
     .header-login {
       box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+      outline: none;
+      font-family: "Montserrat", sans-serif;
+      padding: 5px 15px;
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
       color: var(--font-color);
       border-radius: 4px;
       background-color: var(--accent-color);

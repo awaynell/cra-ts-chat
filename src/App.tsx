@@ -37,20 +37,18 @@ const App = () => {
   const firestore = firebase.firestore();
 
   const fetchMessages = async () => {
-    setLoading(true);
-    const response = firestore
+    firestore
       .collection("messages")
-      .orderBy("createdAt")
+      .limit(100)
+      .orderBy("createdAt", "desc")
       .onSnapshot((data: any) => {
         const tempDoc = [] as any;
         data.forEach((doc: any) => {
           tempDoc.push({ ...doc.data() });
-          console.log("tempDoc: ", tempDoc);
         });
-        setMessages([...tempDoc]);
-        console.log(messages);
+        setMessages([...tempDoc].reverse());
+        setLoading(false);
       });
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -70,13 +68,14 @@ const App = () => {
       if (user) {
         setUser(user);
         setIsAuth(true);
-        setLoading(false);
+        fetchMessages();
       } else {
-        setLoading(false);
         setIsAuth(false);
+        setLoading(false);
       }
     });
-    fetchMessages();
+    console.log("useEffect end work");
+    console.log(load);
   }, []);
 
   if (load) {
@@ -102,8 +101,8 @@ const App = () => {
 export default App;
 
 // TODO
-// отцентровать сообщение
+// поработать с анимацией
+// сделать скролл до конца по клику на инпут (для телефонов)
 // подчистить код
 // убрать ненужное
-// застилизовать scroll
 // поработать со стилями

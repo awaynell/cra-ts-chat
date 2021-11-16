@@ -1,14 +1,8 @@
-import React, { FC, useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "./context";
-import Loader from "./Loader";
 
 const ChatMessages = () => {
-  const { messages, user, load } = useContext(Context);
-  console.log("messages: ", messages);
-
-  if (load) {
-    return <Loader />;
-  }
+  const { messages, user } = useContext(Context);
 
   return (
     <>
@@ -16,7 +10,11 @@ const ChatMessages = () => {
         return (
           <div
             className='message'
-            style={{ marginLeft: message.uid === user.uid ? "auto" : "", backgroundColor: message.uid === user.uid ? "red" : "blue" }}
+            key={message.createdAt}
+            style={{
+              marginLeft: message.uid === user.uid ? "auto" : "",
+              backgroundColor: message.uid === user.uid ? "var(--accent-color-hover)" : "var(--accent-color)",
+            }}
           >
             <div className='message-avatar'>
               <img style={{ backgroundColor: "red" }} src={message.photoURL} />

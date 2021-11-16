@@ -6,11 +6,13 @@
   justify-content: center;
   align-items: center;
   .chat-input {
-    display: flex;
-    align-items: center;
     margin-top: 1%;
     height: 100%;
-    width: 70%;
+    width: 90%;
+    form {
+      display: flex;
+      width: 100%;
+    }
   }
   .chat-input input {
     margin-left: 10px;
@@ -31,23 +33,27 @@
     height: 100vh;
     margin-top: 10px;
     width: 95%;
-    // border: 5px solid var(--accent-color);
+    border-radius: 10px;
     background-color: var(--chat-bg);
     .chat-messages {
       height: 80vh;
       overflow: auto;
-      color: var(--font-color);
+      color: var(--font-chat-color);
+      padding-right: 20px;
       display: flex;
       flex-direction: column;
       .message {
         background-color: var(--accent-color);
-        font-size: 19px;
+        font-size: 20px;
         display: flex;
+        align-items: center;
         width: fit-content;
         margin: 10px 15px 5px 15px;
+        transition: 1s all;
         padding: 5px;
         border-radius: 10px;
         .message-avatar img {
+          display: block;
           height: 20px;
           width: 20px;
           margin-right: 10px;

@@ -4,7 +4,26 @@
 @import "./Header.scss";
 @import "./Chat.scss";
 @import "./Loader.scss";
+
+html,
 body {
+  scrollbar-color: var(--accent-color) var(--header-bg);
+  scrollbar-width: thin;
+}
+::-webkit-scrollbar {
+  margin-right: 15px;
+  width: 4px;
+  height: 1px;
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-right: 2px rgba(255, 255, 255, 0) solid;
+  background-clip: padding-box;
+}
+
+body {
+  box-sizing: border-box;
   background-color: var(--layout-chat-bg);
 }
 

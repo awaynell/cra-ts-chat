@@ -7,21 +7,18 @@ import Loader from "./Loader";
 
 interface ChatProps {
   textMessage: string;
-  setTextMessage: any;
+  setTextMessage?: any;
   user: any;
 }
 
 const Chat: FC<ChatProps> = ({ textMessage, setTextMessage, user }) => {
   const { load, auth, firestore, firebase, messages } = useContext(Context);
-  console.log("messages: ", messages);
-  messages.map((mess: any) => {
-    console.log(mess.text);
-  });
 
   let inputEl: any = useRef();
   let endOfMessages: any = useRef();
 
   const sendMessages = () => {
+    if (textMessage.length === 0) return;
     firestore.collection("messages").add({
       uid: user.uid,
       displayName: user.displayName,
@@ -30,6 +27,7 @@ const Chat: FC<ChatProps> = ({ textMessage, setTextMessage, user }) => {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
     inputEl.current.value = "";
+    setTextMessage("");
     console.log("Message sent");
   };
 
@@ -46,8 +44,14 @@ const Chat: FC<ChatProps> = ({ textMessage, setTextMessage, user }) => {
         </div>
       </div>
       <div className='chat-input'>
-        <input ref={inputEl} type='text' className='chat-text' onChange={(e) => setTextMessage(e.target.value)} />
-        <button className='chat-send' onClick={sendMessages}></button>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <input ref={inputEl} type='text' className='chat-text' onChange={(e) => setTextMessage(e.target.value)} />
+          <button type='submit' className='chat-send' onClick={sendMessages}></button>
+        </form>
       </div>
     </div>
   );
