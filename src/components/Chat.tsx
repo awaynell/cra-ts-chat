@@ -1,12 +1,7 @@
-import { render } from "@testing-library/react";
-import { firestore } from "firebase";
 import React, { FC, useContext, useEffect, useRef } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm, useWatch } from "react-hook-form";
-import { isNonNullExpression } from "typescript";
 import ChatMessages from "./ChatMessages";
 import { Context } from "./context";
-import Loader from "./Loader";
 
 interface ChatProps {
   textMessage: string;
@@ -16,7 +11,7 @@ interface ChatProps {
 let renderCount = 0;
 const Chat: FC<ChatProps> = ({ user }) => {
   const { load, auth, firestore, firebase, messages } = useContext(Context);
-  const { register, handleSubmit, watch, control, setValue } = useForm();
+  const { register, handleSubmit, control, setValue } = useForm();
 
   const firstName = useWatch({
     control,
@@ -25,17 +20,15 @@ const Chat: FC<ChatProps> = ({ user }) => {
 
   renderCount++;
 
-  let inputEl: any = useRef();
+  // let inputEl: any = useRef();
   let endOfMessages: any = useRef();
 
   const onSubmit: any = (data: any) => {
-    console.log(data.chatText);
     sendMessages(data.chatText);
   };
 
-  const doSomething = (e: any) => {
+  const sendByKey = (e: any) => {
     if (e.key === "Enter") {
-      console.log(e);
       sendMessages(e.target.value);
       setValue("chatText", "");
     }
@@ -69,13 +62,7 @@ const Chat: FC<ChatProps> = ({ user }) => {
       </div>
       <div className='chat-input'>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-            {...register("chatText")}
-            ref={inputEl}
-            onKeyDown={(e) => doSomething(e)}
-            className='chat-text'
-            onClick={() => endOfMessages.current.scrollIntoView()}
-          />
+          <input {...register("chatText")} onKeyDown={(e) => sendByKey(e)} className='chat-text' />
           <button type='submit' className='chat-send' />
         </form>
       </div>
