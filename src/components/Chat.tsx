@@ -63,7 +63,7 @@ const Chat: FC<ChatProps> = ({ user }) => {
       <div className='chat-input'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input {...register("chatText")} onKeyDown={(e) => sendByKey(e)} className='chat-text' />
-          <button type='submit' className='chat-send' />
+          <button type='submit' className='chat-send'></button>
         </form>
       </div>
     </div>

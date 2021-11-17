@@ -7,29 +7,35 @@
   justify-content: center;
   align-items: center;
   .chat-input {
+    height: 100%;
     width: 90%;
     form {
       display: flex;
       margin-top: 1%;
-      height: 100%;
+      input {
+        margin-left: 10px;
+        padding: 12px;
+        width: 100%;
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+      }
+      button {
+        background-color: var(--accent-color);
+        border: none;
+        width: 10%;
+        margin-left: 20px;
+        border-radius: 10px;
+        background-color: var(--accent-color) !important;
+        background: url("https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-send-basic-ui-elements-flatart-icons-outline-flatarticons.png")
+          49% / 30% no-repeat;
+        img {
+          width: 100%;
+        }
+      }
     }
   }
-  .chat-input input {
-    margin-left: 10px;
-    padding: 12px;
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    font-size: 20px;
-  }
-  .chat-input button {
-    background-color: var(--accent-color);
-    border: none;
-    width: 10%;
-    margin-left: 20px;
-    padding: 20px;
-    border-radius: 10px;
-  }
+
   .chat {
     height: 100vh;
     margin-top: 10px;
@@ -64,7 +70,7 @@
           border: none;
         }
         .message-time {
-          font-size: 15px;
+          font-size: 2vh;
           color: var(--time-color);
         }
       }
