@@ -1,6 +1,9 @@
+import { render } from "@testing-library/react";
 import { firestore } from "firebase";
 import React, { FC, useContext, useEffect, useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useForm, useWatch } from "react-hook-form";
+import { isNonNullExpression } from "typescript";
 import ChatMessages from "./ChatMessages";
 import { Context } from "./context";
 import Loader from "./Loader";
@@ -10,30 +13,45 @@ interface ChatProps {
   setTextMessage?: any;
   user: any;
 }
-
-const Chat: FC<ChatProps> = ({ textMessage, setTextMessage, user }) => {
+let renderCount = 0;
+const Chat: FC<ChatProps> = ({ user }) => {
   const { load, auth, firestore, firebase, messages } = useContext(Context);
+  const { register, handleSubmit, watch, control, setValue } = useForm();
+
+  const firstName = useWatch({
+    control,
+    name: "chatText",
+  });
+
+  renderCount++;
 
   let inputEl: any = useRef();
   let endOfMessages: any = useRef();
 
+  const onSubmit: any = (data: any) => {
+    console.log(data.chatText);
+    sendMessages(data.chatText);
+  };
+
   const doSomething = (e: any) => {
     if (e.key === "Enter") {
-      sendMessages();
+      console.log(e);
+      sendMessages(e.target.value);
+      setValue("chatText", "");
     }
   };
 
-  const sendMessages = () => {
-    if (textMessage.length === 0) return;
+  const sendMessages = (text: string) => {
+    console.log(text);
+    if (text.length === 0) return;
     firestore.collection("messages").add({
       uid: user.uid,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      text: textMessage,
+      text: text,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
-    inputEl.current.value = "";
-    setTextMessage("");
+    setValue("chatText", "");
     console.log("Message sent");
   };
 
@@ -50,8 +68,16 @@ const Chat: FC<ChatProps> = ({ textMessage, setTextMessage, user }) => {
         </div>
       </div>
       <div className='chat-input'>
-        <input ref={inputEl} type='text' className='chat-text' onChange={(e) => setTextMessage(e.target.value)} onKeyDown={(e) => doSomething(e)} />
-        <button className='chat-send' onClick={sendMessages}></button>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            {...register("chatText")}
+            ref={inputEl}
+            onKeyDown={(e) => doSomething(e)}
+            className='chat-text'
+            onClick={() => endOfMessages.current.scrollIntoView()}
+          />
+          <button type='submit' className='chat-send' />
+        </form>
       </div>
     </div>
   );

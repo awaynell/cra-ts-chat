@@ -7,10 +7,12 @@
   justify-content: center;
   align-items: center;
   .chat-input {
-    display: flex;
-    margin-top: 1%;
-    height: 100%;
     width: 90%;
+    form {
+      display: flex;
+      margin-top: 1%;
+      height: 100%;
+    }
   }
   .chat-input input {
     margin-left: 10px;
