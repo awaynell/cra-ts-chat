@@ -4,22 +4,31 @@ import { Context } from "./context";
 const ChatMessages = () => {
   const { messages, user } = useContext(Context);
 
+  const time = messages.createdAt;
+  console.log(time);
+
   return (
     <>
       {messages.map((message: any) => {
         return (
           <div
-            className='message'
+            className='message-wrapper'
             key={message.id}
-            style={{
-              marginLeft: message.uid === user.uid ? "auto" : "",
-              backgroundColor: message.uid === user.uid ? "var(--accent-color-hover)" : "var(--accent-color)",
-            }}
+            style={{ marginLeft: message.uid === user.uid ? "auto" : "", flexDirection: message.uid === user.uid ? "row-reverse" : "row" }}
           >
             <div className='message-avatar'>
               <img style={{ backgroundColor: "red" }} src={message.photoURL} />
             </div>
-            <div className='message-text'>{message.text}</div>
+            <div
+              className='message'
+              style={{
+                margin: message.uid === user.uid ? "0 0 0 15px" : "0 15px 0 0",
+                backgroundColor: message.uid === user.uid ? "var(--accent-color-hover)" : "var(--accent-color)",
+              }}
+            >
+              <div className='message-text'>{message.text}</div>
+            </div>
+            <div className='message-time'>{new Date(message.createdAt).toLocaleString("ru", { timeStyle: "short" })}</div>
           </div>
         );
       })}
