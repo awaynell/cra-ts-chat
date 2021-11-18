@@ -4,9 +4,6 @@ import { Context } from "./context";
 const ChatMessages = () => {
   const { messages, user } = useContext(Context);
 
-  const time = messages.createdAt;
-  console.log(time);
-
   return (
     <>
       {messages.map((message: any) => {
@@ -28,7 +25,7 @@ const ChatMessages = () => {
             >
               <div className='message-text'>{message.text}</div>
             </div>
-            <div className='message-time'>{new Date(message.createdAt).toLocaleString("ru", { timeStyle: "short" })}</div>
+            {message.createdAt && <div className='message-time'>{new Date(message.createdAt).toLocaleString("ru", { timeStyle: "short" })}</div>}
           </div>
         );
       })}
