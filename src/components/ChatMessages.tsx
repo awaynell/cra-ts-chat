@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { Context } from "./context";
+import ReactTooltip from "react-tooltip";
 
 const ChatMessages = () => {
-  const { messages, user } = useContext(Context);
+  const { messages, user, theme } = useContext(Context);
 
   return (
     <>
@@ -25,7 +26,12 @@ const ChatMessages = () => {
             >
               <div className='message-text'>{message.text}</div>
             </div>
-            {message.createdAt && <div className='message-time'>{new Date(message.createdAt).toLocaleString("ru", { timeStyle: "short" })}</div>}
+            <ReactTooltip effect='solid' className='tooltip' backgroundColor={"var(--layout-chat-bg)"} textColor={"var(--font-color)"} />
+            {message.createdAt && (
+              <div data-tip={new Date(message.createdAt).toLocaleString("ru", { dateStyle: "medium", timeStyle: "short" })} className='message-time'>
+                {new Date(message.createdAt).toLocaleString("ru", { timeStyle: "short" })}
+              </div>
+            )}
           </div>
         );
       })}

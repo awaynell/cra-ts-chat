@@ -15,7 +15,7 @@ const App = () => {
   const [isAuth, setIsAuth] = useState(true);
   const [messages, setMessages] = useState([] as any);
   const [load, setLoading] = useState(false);
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("dark" || "light");
   const [user, setUser] = useState();
 
   let config = {

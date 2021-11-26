@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useRef } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import ChatMessages from "./ChatMessages";
 import { Context } from "./context";
 
@@ -11,13 +11,9 @@ interface ChatProps {
 let renderCount = 0;
 const Chat: FC<ChatProps> = ({ user }) => {
   const { load, auth, firestore, firebase, messages } = useContext(Context);
-  const { register, handleSubmit, control, setValue } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
 
-  const firstName = useWatch({
-    control,
-    name: "chatText",
-  });
-
+  useEffect(() => {}, []);
   renderCount++;
 
   // let inputEl: any = useRef();
