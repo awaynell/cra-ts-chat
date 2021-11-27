@@ -43,7 +43,7 @@
     border-radius: 10px;
     background-color: var(--chat-bg);
     .chat-messages {
-      height: 80vh;
+      max-height: 80vh;
       overflow: auto;
       color: var(--font-chat-color);
       display: flex;
@@ -52,6 +52,7 @@
         display: flex;
         align-items: center;
         margin: 10px 15px 5px 15px;
+        position: inherit;
         .message {
           background-color: var(--accent-color);
           padding: 5px;
@@ -76,4 +77,19 @@
       }
     }
   }
+}
+
+.item-enter {
+  opacity: 0;
+}
+.item-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
 }

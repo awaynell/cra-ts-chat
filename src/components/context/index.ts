@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, SetStateAction } from "react";
 
 export const Context = createContext({} as AppContextInterface);
 
@@ -7,10 +7,10 @@ interface AppContextInterface {
   auth: any;
   firestore: any;
   isAuth: boolean;
-  setIsAuth: any;
+  setIsAuth: SetStateAction<unknown>;
   user: any;
-  messages: any;
+  messages: Array<object>;
   theme: string;
-  setTheme: any;
+  setTheme: SetStateAction<unknown>;
   load: boolean;
 }

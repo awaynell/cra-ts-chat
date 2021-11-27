@@ -1,5 +1,6 @@
 import React, { FC, useContext, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
+import { CSSTransition } from "react-transition-group";
 import ChatMessages from "./ChatMessages";
 import { Context } from "./context";
 
@@ -8,15 +9,12 @@ interface ChatProps {
   setTextMessage?: any;
   user: any;
 }
-let renderCount = 0;
 const Chat: FC<ChatProps> = ({ user }) => {
-  const { load, auth, firestore, firebase, messages } = useContext(Context);
+  const { firestore, firebase, messages } = useContext(Context);
   const { register, handleSubmit, setValue } = useForm();
 
   useEffect(() => {}, []);
-  renderCount++;
 
-  // let inputEl: any = useRef();
   let endOfMessages: any = useRef();
 
   const onSubmit: any = (data: any) => {
@@ -41,7 +39,6 @@ const Chat: FC<ChatProps> = ({ user }) => {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setValue("chatText", "");
-    console.log("Message sent");
   };
 
   useEffect(() => {
@@ -58,7 +55,14 @@ const Chat: FC<ChatProps> = ({ user }) => {
       </div>
       <div className='chat-input'>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input {...register("chatText")} onKeyDown={(e) => sendByKey(e)} className='chat-text' />
+          <input
+            {...register("chatText")}
+            onKeyDown={(e) => sendByKey(e)}
+            className='chat-text'
+            onClick={(e) => {
+              endOfMessages.current.scrollIntoView({ block: "end", behavior: "smooth" });
+            }}
+          />
           <button type='submit' className='chat-send'></button>
         </form>
       </div>

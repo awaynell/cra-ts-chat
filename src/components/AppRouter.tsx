@@ -1,19 +1,14 @@
-import firebase from "firebase";
-import { disconnect } from "process";
-import React, { FC, useContext, useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import React, { FC, useContext, useState } from "react";
 import { Redirect, Route, Switch } from "react-router";
-import { changeTheme } from "../functions/changeTheme";
 import Chat from "./Chat";
 import { Context } from "./context";
 import Header from "./Header";
-import Loader from "./Loader";
 import Login from "./Login";
 
 const AppRouter: FC = () => {
   const [textMessage, setTextMessage] = useState("");
 
-  const { theme, setTheme, user, firebase, firestore, auth, isAuth, setIsAuth } = useContext(Context);
+  const { theme, setTheme, user, isAuth } = useContext(Context);
 
   return (
     <>

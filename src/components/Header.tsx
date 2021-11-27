@@ -11,7 +11,7 @@ interface HeaderProps {
   setTheme: any;
 }
 const Header: FC<HeaderProps> = ({ title, login, theme, setTheme }) => {
-  const { isAuth, setIsAuth } = useContext(Context);
+  const { setIsAuth } = useContext(Context);
 
   const setThemeOnClick = (theme: string, setTheme: any) => {
     document.body.classList.remove("preload");

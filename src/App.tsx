@@ -1,24 +1,23 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./styles/App.scss";
 import Header from "./components/Header";
-import Chat from "./components/Chat";
 import { changeTheme } from "./functions/changeTheme";
-import Login from "./components/Login";
 import firebase from "firebase";
 import { Context } from "./components/context/index";
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./components/AppRouter";
-import { useAuthState } from "react-firebase-hooks/auth";
 import Loader from "./components/Loader";
 
-const App = () => {
-  const [isAuth, setIsAuth] = useState(true);
-  const [messages, setMessages] = useState([] as any);
-  const [load, setLoading] = useState(false);
-  const [theme, setTheme] = useState("dark" || "light");
-  const [user, setUser] = useState();
+type ThemeState = "dark" | "light";
 
-  let config = {
+const App = () => {
+  const [isAuth, setIsAuth] = useState<boolean>(true);
+  const [messages, setMessages] = useState<Array<{}>>([]);
+  const [load, setLoading] = useState<boolean>(false);
+  const [theme, setTheme] = useState<ThemeState>("dark");
+  const [user, setUser] = useState<Object>();
+
+  const config = {
     apiKey: "AIzaSyDUcRzJlYK9rQ9vXL_WwnmSLGeQ0McyERw",
     authDomain: "react-ts-chat-70780.firebaseapp.com",
     projectId: "react-ts-chat-70780",
@@ -36,20 +35,20 @@ const App = () => {
   const auth = firebase.auth();
   const firestore = firebase.firestore();
 
-  const fetchMessages = async () => {
+  const fetchMessages = useCallback(async () => {
     firestore
       .collection("messages")
       .limit(100)
       .orderBy("createdAt", "desc")
       .onSnapshot((data: any) => {
-        const tempDoc = [] as any;
+        const tempDoc: Array<{}> = [];
         data.forEach((doc: any) => {
           tempDoc.push({ id: doc.id, ...doc.data() });
         });
         setMessages([...tempDoc].reverse());
         setLoading(false);
       });
-  };
+  }, [firestore]);
 
   useEffect(() => {
     if (localStorage.getItem("theme") === null) {
@@ -74,8 +73,7 @@ const App = () => {
         setLoading(false);
       }
     });
-    console.log(load);
-  }, []);
+  }, [fetchMessages]);
 
   if (load) {
     return (
@@ -100,8 +98,4 @@ const App = () => {
 export default App;
 
 // TODO
-// поработать с анимацией
-// сделать скролл до конца по клику на инпут (для телефонов)  (не увенчалось успехом)
-// подчистить код
-// убрать ненужное
-// поработать со стилями
+// переписать принцип рендера сообщений чата для возможной анимации (?)

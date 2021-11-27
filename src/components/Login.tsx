@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Context } from "./context/index";
-import firebase from "firebase";
 import "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { signIn } from "../functions/login";
 
 const Login = () => {
