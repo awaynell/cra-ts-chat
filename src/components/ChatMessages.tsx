@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "./context";
 import ReactTooltip from "react-tooltip";
-import { CSSTransition, Transition, TransitionGroup } from "react-transition-group";
-import { ENTERING } from "react-transition-group/Transition";
 import "animate.css";
 
 const ChatMessages = () => {
@@ -13,7 +11,7 @@ const ChatMessages = () => {
       {messages.map((message: any) => {
         return (
           <div
-            className='message-wrapper animate__animated animate__zoomIn'
+            className='message-wrapper animate__animated animate__fadeInUp'
             style={{
               marginLeft: message.uid === user.uid ? "auto" : "",
               flexDirection: message.uid === user.uid ? "row-reverse" : "row",
