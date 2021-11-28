@@ -11,18 +11,18 @@ const ChatMessages = () => {
       {messages.map((message: any) => {
         return (
           <div
-            className='message-wrapper animate__animated animate__fadeInUp'
+            className='message-wrapper'
             style={{
               marginLeft: message.uid === user.uid ? "auto" : "",
               flexDirection: message.uid === user.uid ? "row-reverse" : "row",
             }}
             key={message.id}
           >
-            <div className='message-avatar'>
+            <div className='message-avatar animate__animated animate__fadeIn'>
               <img style={{ backgroundColor: "red" }} src={message.photoURL} alt='msg-avatar' />
             </div>
             <div
-              className='message'
+              className='message animate__animated animate__bounceIn'
               style={{
                 margin: message.uid === user.uid ? "0 0 0 15px" : "0 15px 0 0",
                 backgroundColor: message.uid === user.uid ? "var(--accent-color-hover)" : "var(--accent-color)",
@@ -39,16 +39,10 @@ const ChatMessages = () => {
                 {new Date(message.createdAt).toLocaleString("ru", { timeStyle: "short" })}
               </div>
             )}
-            <ReactTooltip
-              effect='solid'
-              className='tooltip'
-              backgroundColor={"var(--layout-chat-bg)"}
-              textColor={"var(--font-color)"}
-              delayShow={100}
-            />
           </div>
         );
       })}
+      <ReactTooltip effect='solid' className='tooltip' backgroundColor={"var(--layout-chat-bg)"} textColor={"var(--font-color)"} delayShow={100} />
     </>
   );
 };
