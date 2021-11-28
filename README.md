@@ -9,6 +9,7 @@ Stack:
 - React-hooks-form
 - Firebase Firestore
 - SCSS
+- Animate.css
 
 
 ## Available Scripts
