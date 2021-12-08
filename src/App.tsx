@@ -18,7 +18,13 @@ const App = () => {
   const [user, setUser] = useState<Object>();
 
   const config = {
-    YOUR_CONFIG,
+    apiKey: "AIzaSyDUcRzJlYK9rQ9vXL_WwnmSLGeQ0McyERw",
+    authDomain: "react-ts-chat-70780.firebaseapp.com",
+    projectId: "react-ts-chat-70780",
+    storageBucket: "react-ts-chat-70780.appspot.com",
+    messagingSenderId: "133802905391",
+    appId: "1:133802905391:web:f3e4380a4ea7b5b9995bda",
+    measurementId: "${config.measurementId}",
   };
 
   if (!firebase.apps.length) {
