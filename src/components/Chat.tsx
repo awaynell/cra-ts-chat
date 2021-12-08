@@ -6,8 +6,8 @@ import { Context } from "./context";
 
 interface ChatProps {
   textMessage: string;
-  setTextMessage?: any;
-  user: any;
+  setTextMessage?: React.SetStateAction<any>;
+  user: { [key: string]: any };
 }
 const Chat: FC<ChatProps> = ({ user }) => {
   const { firestore, firebase, messages } = useContext(Context);
