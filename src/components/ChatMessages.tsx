@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Context } from "./context";
-import ReactTooltip from "react-tooltip";
 import "animate.css";
+import { Fade } from "@mui/material";
+import CustomTooltip from "./CustomTooltip";
 
 const ChatMessages = () => {
   const { messages, user } = useContext(Context);
@@ -31,18 +32,22 @@ const ChatMessages = () => {
               <div className='message-text'>{message.text}</div>
             </div>
             {message.createdAt && (
-              <div
-                data-tip={new Date(message.createdAt).toLocaleString("ru", { dateStyle: "medium", timeStyle: "short" })}
-                className='message-time'
-                style={{ margin: message.uid === user.uid ? "0 0 0 5px" : "0 5px 0 0" }}
+              <CustomTooltip
+                placement='top'
+                title={new Date(message.createdAt).toLocaleString("ru", { dateStyle: "medium", timeStyle: "short" })}
+                TransitionComponent={Fade}
+                enterDelay={500}
+                leaveDelay={250}
+                arrow
               >
-                {new Date(message.createdAt).toLocaleString("ru", { timeStyle: "short" })}
-              </div>
+                <div className='message-time' style={{ margin: message.uid === user.uid ? "0 0 0 5px" : "0 5px 0 0" }}>
+                  {new Date(message.createdAt).toLocaleString("ru", { timeStyle: "short" })}
+                </div>
+              </CustomTooltip>
             )}
           </div>
         );
       })}
-      <ReactTooltip effect='solid' className='tooltip' backgroundColor={"var(--layout-chat-bg)"} textColor={"var(--font-color)"} delayShow={100} />
     </>
   );
 };
