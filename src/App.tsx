@@ -18,7 +18,7 @@ const App = () => {
   const [user, setUser] = useState<Object>();
 
   const config = {
-      YOUR_CONFIG
+    YOUR_CONFIG,
   };
 
   if (!firebase.apps.length) {
