@@ -6,12 +6,12 @@ Demo: https://cra-ts-chat.vercel.app/chat
 
 ## Стек технологий
 * Typescript
-- React + Hooks
-- React-router
-- React-hooks-form
-- Firebase Firestore
-- SCSS
-- Animate.css
+* React + Hooks
+* React-router
+* React-hooks-form
+* Firebase Firestore
+* SCSS
+* Animate.css
 
 <p align="center">
 <img alt='Превью' src="https://github.com/awaynell/cra-ts-chat/blob/master/docs/chat2.png">
