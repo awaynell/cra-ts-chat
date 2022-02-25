@@ -18,7 +18,7 @@ Stack:
 </p>
 
 <p align="center">
-<img alt='Превью' src="https://github.com/awaynell/cra-ts-chat/blob/master/docs/chat1.png">
+<img alt='Превью' src="https://github.com/awaynell/cra-ts-chat/blob/master/docs/chat1.png?raw">
 </p>
 
 <table>
