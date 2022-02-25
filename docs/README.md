@@ -4,8 +4,8 @@ Demo: https://cra-ts-chat.vercel.app/chat
 
 Чат работает в режиме реального времени, основан на базе данных от Firebase, имеется темная и светлая тема. 
 
-Stack: 
-- Typescript
+## Стек технологий
+* Typescript
 - React + Hooks
 - React-router
 - React-hooks-form
