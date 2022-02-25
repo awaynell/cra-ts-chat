@@ -43,7 +43,7 @@
     border-radius: 10px;
     background-color: var(--chat-bg);
     .chat-messages {
-      max-height: 80vh;
+      height: 80vh;
       overflow: auto;
       color: var(--font-chat-color);
       display: flex;
