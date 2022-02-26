@@ -1,6 +1,6 @@
 
-## Simple React Chat with Firestore Database from Firebase
-Demo: https://cra-ts-chat.vercel.app/chat
+# <p align="center">Realtime Chat with Firestore Database on React</p>
+## Demo: https://cra-ts-chat.vercel.app/chat
 
 Чат работает в режиме реального времени, основан на базе данных от Firebase, имеется темная и светлая тема. 
 
