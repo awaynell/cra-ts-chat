@@ -4,7 +4,6 @@ export const signIn = async (setIsAuth: any, isAuth: boolean, auth: any) => {
   const provider = new firebase.auth.GoogleAuthProvider();
   const { user } = await auth.signInWithPopup(provider);
   localStorage.setItem("user", JSON.stringify(user));
-  console.log(isAuth);
   setIsAuth(true);
 };
 

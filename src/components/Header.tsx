@@ -2,7 +2,8 @@ import React, { FC, useContext } from "react";
 import { changeTheme } from "../functions/changeTheme";
 import { signOut } from "../functions/login";
 import { Context } from "./context";
-import { Moon, Sun } from "./svg";
+import CustomTooltip from "./CustomTooltip";
+import { GithubIcon, Moon, Sun } from "./svg";
 
 interface HeaderProps {
   title?: string;
@@ -42,6 +43,11 @@ const Header: FC<HeaderProps> = ({ title, login, theme, setTheme }) => {
             Выйти
           </button>
         ) : null}
+        <CustomTooltip title={"Этот проект на Github"}>
+          <a href='https://github.com/awaynell/cra-ts-chat' target='_blank' className='githubIcon'>
+            <GithubIcon fill={theme === "light" ? "black" : "white"} />
+          </a>
+        </CustomTooltip>
       </div>
     </div>
   );
