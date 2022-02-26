@@ -34,7 +34,7 @@ Demo: https://cra-ts-chat.vercel.app/chat
       <td>Установить зависимости</td>
     </tr>
     <tr>
-      <td><code>npm run dev</code></td>
+      <td><code>npm start</code></td>
       <td>Запустить сервер разработки localhost:3000 с hot-reloading.</td>
     </tr>
     <tr>
